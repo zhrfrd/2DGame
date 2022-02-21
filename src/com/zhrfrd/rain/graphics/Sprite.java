@@ -26,6 +26,8 @@ public class Sprite {
 	public static Sprite spawn_wall1 = new Sprite (16, 0, 1, SpriteSheet.spawn_level);
 	public static Sprite spawn_wall2 = new Sprite (16, 0, 2, SpriteSheet.spawn_level);
 	public static Sprite spawn_floor = new Sprite (16, 1, 1, SpriteSheet.spawn_level);
+	//Projectiles sprites
+	public static Sprite projectile_wizard = new Sprite (16, 0, 0, SpriteSheet.projectile_wizard);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;

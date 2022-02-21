@@ -2,6 +2,7 @@ package com.zhrfrd.rain.entity.mob;
 
 import com.zhrfrd.rain.Game;
 import com.zhrfrd.rain.Mouse;
+import com.zhrfrd.rain.entity.projectile.Projectile;
 import com.zhrfrd.rain.graphics.Screen;
 import com.zhrfrd.rain.graphics.Sprite;
 import com.zhrfrd.rain.input.Keyboard;
@@ -41,9 +42,18 @@ public class Player extends Mob{
 		} else {
 			walking = false;
 		}
+		clear ();
 		updateShooting ();
 	}
 	
+	private void clear () {
+		for (int i = 0; i < level.getProjectiles().size(); i ++) {
+			Projectile p = level.getProjectiles().get(i);
+			if (p.isRemoved()) 
+				level.getProjectiles().remove(i);
+		}
+	}
+
 	private void updateShooting () {
 		if (Mouse.getButton() == 1) {
 			double dx = Mouse.getX() - Game.getWindowWidth() / 2;   //X click mouse from center of screen
