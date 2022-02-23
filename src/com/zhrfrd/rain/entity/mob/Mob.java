@@ -13,8 +13,7 @@ public abstract class Mob extends Entity {
 	protected int dir = 0;   //Direction 0-North, 1-East, 2-South, 3-West
 	protected boolean moving = false;
 	
-	public void move (int xa, int ya) {
-		System.out.println ("Size: " + level.getProjectiles().size());
+	public void move (int xa, int ya) {		
 		if (xa != 0 && ya != 0) {   //If we are trying to move diagonally keep moving during collision
 			move (xa, 0);   //
 			move (0, ya);   //Split the two movements xa and ya

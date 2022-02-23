@@ -4,13 +4,13 @@ import com.zhrfrd.rain.graphics.Screen;
 import com.zhrfrd.rain.graphics.Sprite;
 
 public class WizardProjectile extends Projectile {
-
+	public static final int FIRE_RATE = 10;   //Higher the number, slower the projectile shooting rate
+	
 	public WizardProjectile(int x, int y, double dir) {
 		super(x, y, dir);
 		range = 200;
 		speed = 4;
 		damage = 20;
-		rateOfFire = 15;
 		sprite = Sprite.projectile_wizard;
 		nx = speed * Math.cos(angle);
 		ny = speed * Math.sin(angle);
@@ -18,6 +18,8 @@ public class WizardProjectile extends Projectile {
 	
 	@Override
 	public void update () {
+		if (level.tileCollision(x, y, nx, ny, 7))
+			remove ();
 		move ();
 	}
 	

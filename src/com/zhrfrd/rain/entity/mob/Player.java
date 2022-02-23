@@ -3,6 +3,7 @@ package com.zhrfrd.rain.entity.mob;
 import com.zhrfrd.rain.Game;
 import com.zhrfrd.rain.Mouse;
 import com.zhrfrd.rain.entity.projectile.Projectile;
+import com.zhrfrd.rain.entity.projectile.WizardProjectile;
 import com.zhrfrd.rain.graphics.Screen;
 import com.zhrfrd.rain.graphics.Sprite;
 import com.zhrfrd.rain.input.Keyboard;
@@ -12,10 +13,12 @@ public class Player extends Mob{
 	private Sprite sprite;
 	private int anim;
 	private boolean walking = false;
+	private int fireRate = 0;
 	
 	public Player (Keyboard input ) {
 		this.input = input;
 		sprite = Sprite.player_forward;
+		fireRate = WizardProjectile.FIRE_RATE;
 	}
 	
 	public Player (int x , int y, Keyboard input) {
@@ -27,6 +30,8 @@ public class Player extends Mob{
 	
 	@Override
 	public void update () {
+		if (fireRate > 0)
+			fireRate --;
 		int xa = 0, ya = 0;
 		if (anim < 7500)   //To avoid having an exception when it reaches the maximum capacity of an integer
 			anim ++;
@@ -55,11 +60,12 @@ public class Player extends Mob{
 	}
 
 	private void updateShooting () {
-		if (Mouse.getButton() == 1) {
+		if (Mouse.getButton() == 1 && fireRate <= 0) {
 			double dx = Mouse.getX() - Game.getWindowWidth() / 2;   //X click mouse from center of screen
 			double dy = Mouse.getY() - Game.getWindowHeight() / 2;   //Y click mouse from center of screen
 			double dir = Math.atan2(dy, dx);          //Direction (tangent)
 			shoot (x, y, dir);   //Shoot from point (x,y) to direction dir	
+			fireRate = WizardProjectile.FIRE_RATE;
 		}
 	}
 
