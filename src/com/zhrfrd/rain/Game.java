@@ -8,11 +8,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
 import com.zhrfrd.rain.entity.mob.Player;
 import com.zhrfrd.rain.graphics.Screen;
+import com.zhrfrd.rain.graphics.Sprite;
 import com.zhrfrd.rain.input.Keyboard;
 import com.zhrfrd.rain.level.Level;
 import com.zhrfrd.rain.level.TileCoordinate;
@@ -39,7 +41,7 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		key = new Keyboard();
 		level = Level.spawn;
-		TileCoordinate playerSpawn = new TileCoordinate (22, 45);
+		TileCoordinate playerSpawn = new TileCoordinate (16, 10);
 		player = new Player (playerSpawn.x (), playerSpawn.y (), key);
 		player.init(level);
 		setPreferredSize(size); // Component method to set Canvas size
@@ -110,6 +112,13 @@ public class Game extends Canvas implements Runnable {
 		int yScroll = player.y - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
+		Sprite sprite = new Sprite (2, 2, 0xffffff);
+		Random random = new Random ();
+		for (int i = 0; i < 100; i ++) {
+			int x = random.nextInt(20);
+			int y = random.nextInt(20);
+			screen.renderSprite(width - 60 + x, 100 + y, sprite, true);
+		}
 		for (int i = 0; i < pixels.length; i++) { // Set the colour to each pixel
 			pixels [i] = screen.pixels [i];
 		}
