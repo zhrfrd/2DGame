@@ -1,5 +1,6 @@
 package com.zhrfrd.rain.entity.projectile;
 
+import com.zhrfrd.rain.entity.spawner.ParticleSpawner;
 import com.zhrfrd.rain.graphics.Screen;
 import com.zhrfrd.rain.graphics.Sprite;
 
@@ -18,8 +19,10 @@ public class WizardProjectile extends Projectile {
 	
 	@Override
 	public void update () {
-		if (level.tileCollision(x, y, nx, ny, 7))
+		if (level.tileCollision(x, y, nx, ny, 7)) {
+			level.add (new ParticleSpawner ((int) x, (int) y, 44, 50, level));
 			remove ();
+		}
 		move ();
 	}
 	
