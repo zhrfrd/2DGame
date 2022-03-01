@@ -18,7 +18,7 @@ public class Particle extends Entity {
 		this.yy = y;
 		this.life = life + (random.nextInt(20) -10);
 		sprite = Sprite.particle_normal;		
-		this.xa = random.nextGaussian();   //Random number between -1 and 1 that is more likely to be closer to 0
+		this.xa = random.nextGaussian();   //Random number between -1 and 1 that is more likely to be closer to 0 
 		this.ya = random.nextGaussian();
 	}
 	
