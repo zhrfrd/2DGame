@@ -28,6 +28,22 @@ public class Screen {
 		}
 	}
 	
+	public void renderSheet (int xp, int yp, SpriteSheet sheet, boolean fixed) {   //Render single sprite
+		if (fixed) {
+			xp -= xOffset;
+			yp -= yOffset;
+		}
+		for (int y = 0; y < sheet.HEIGHT; y ++) {
+			int ya = y + yp;
+			for (int x = 0; x < sheet.WIDTH; x ++) {
+				int xa = x + xp;
+				if (xa < 0 || xa >= width || ya < 0 || ya >= height)   //Don't draw when exceed the size of screen by skipping one iteration
+					continue;
+				pixels [xa + ya * width] = sheet.pixels [x + y * sheet.WIDTH];
+			}
+		}
+	}
+	
 	public void renderSprite (int xp, int yp, Sprite sprite, boolean fixed) {   //Render single sprite
 		if (fixed) {
 			xp -= xOffset;

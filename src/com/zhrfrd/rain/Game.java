@@ -8,13 +8,12 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.Random;
 
 import javax.swing.JFrame;
 
 import com.zhrfrd.rain.entity.mob.Player;
 import com.zhrfrd.rain.graphics.Screen;
-import com.zhrfrd.rain.graphics.Sprite;
+import com.zhrfrd.rain.graphics.SpriteSheet;
 import com.zhrfrd.rain.input.Keyboard;
 import com.zhrfrd.rain.level.Level;
 import com.zhrfrd.rain.level.TileCoordinate;
@@ -112,6 +111,7 @@ public class Game extends Canvas implements Runnable {
 		int yScroll = player.y - screen.height / 2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
+		screen.renderSheet (40, 40, SpriteSheet.player_down, false); 
 		for (int i = 0; i < pixels.length; i++) { // Set the colour to each pixel
 			pixels [i] = screen.pixels [i];
 		}
